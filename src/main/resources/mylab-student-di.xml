@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<!--    Student 클래스를 Spring Bean으로 설정-->
+    <bean id="emma" class="mylab.student.di.xml.Student">
+        <property name="id" value="S01"></property>
+        <property name="name" value="EMMA"></property>
+        <property name="score" value="90"></property>
+    </bean>
+
+    <bean id="ronaldo" class="mylab.student.di.xml.Student">
+        <constructor-arg name="id" value="S02"/>
+        <constructor-arg name="name" value="RONALDO"/>
+<!--        인덱스 대신에 name에 필드 멤버 이름 줘도 상관 없음.-->
+        <constructor-arg name="score" value="40"/>
+    </bean>
+
+    <bean id="messi" class="mylab.student.di.xml.Student">
+        <property name="id" value="S03"></property>
+        <property name="name" value="MESSI"></property>
+        <property name="score" value="100"></property>
+    </bean>
+
+<!--    Course 클래스를 Spring Bean으로 설정-->
+    <bean id="javacourse" class="mylab.student.di.xml.Course">
+        <property name="courseId" value="C01"/>
+        <property name="courseName" value="JAVA Programming"/>
+        <property name="students">
+            <list>
+                <ref bean="emma"/>
+                <ref bean="ronaldo"/>
+                <ref bean="messi"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="gradeService" class="mylab.student.di.xml.GradeService">
+        <property name="course" ref="javacourse"/>
+    </bean>
+</beans>
