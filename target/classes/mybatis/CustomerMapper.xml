@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mylab.customer.dao.mapper.CustomerMapper">
+
+    <select id="selectAllCustomer" resultType="mylab.customer.vo.CustomerVO">
+        SELECT * FROM customer
+    </select>
+
+    <select id="selectCustomerById" parameterType="int" resultType="mylab.customer.vo.CustomerVO">
+        SELECT * FROM customer WHERE id = #{id}
+    </select>
+
+    <insert id="insertCustomer" parameterType="mylab.customer.vo.CustomerVO">
+        INSERT INTO customer (email, name, age, entry_date)
+        VALUES (#{email}, #{name}, #{age}, #{entryDate})
+    </insert>
+
+</mapper>
